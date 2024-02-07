@@ -3,6 +3,8 @@ package com.nitinlondhe.newsapp.di.component
 import android.content.Context
 import com.nitinlondhe.newsapp.NewsApplication
 import com.nitinlondhe.newsapp.data.api.NetworkService
+import com.nitinlondhe.newsapp.data.local.DatabaseService
+import com.nitinlondhe.newsapp.data.local.NewsAppDatabase
 import com.nitinlondhe.newsapp.di.ApplicationContext
 import com.nitinlondhe.newsapp.di.module.ApplicationModule
 import com.nitinlondhe.newsapp.utils.DispatcherProvider
@@ -27,5 +29,9 @@ interface ApplicationComponent {
     fun getDispatcherProvider(): DispatcherProvider
 
     fun getLoggerProvider(): Logger
+
+    fun getDatabaseService(): DatabaseService
+
+    fun getNewsAppDatabase(): NewsAppDatabase
 
 }

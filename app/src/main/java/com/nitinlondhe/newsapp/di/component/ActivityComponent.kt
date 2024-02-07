@@ -2,6 +2,7 @@ package com.nitinlondhe.newsapp.di.component
 
 import com.nitinlondhe.newsapp.di.ActivityScope
 import com.nitinlondhe.newsapp.di.module.ActivityModule
+import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineActivity
 import dagger.Component
 
@@ -10,5 +11,7 @@ import dagger.Component
 interface ActivityComponent {
 
     fun inject(activity: TopHeadlineActivity)
+
+    fun inject(activity: OfflineTopHeadlineActivity)
 
 }

@@ -28,6 +28,9 @@
         <activity
             android:name=".ui.topheadline.TopHeadlineActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.offline.OfflineTopHeadlineActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

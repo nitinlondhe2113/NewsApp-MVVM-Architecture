@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.nitinlondhe.newsapp.R
 import com.nitinlondhe.newsapp.databinding.ActivityMainBinding
+import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +21,10 @@ class MainActivity : AppCompatActivity() {
 
     fun startTopHeadlinesActivity(view: View) {
         startActivity(Intent(TopHeadlineActivity.getStartIntent(this@MainActivity)))
+    }
+
+    fun startOfflineTopHeadlinesActivity(view: View) {
+        startActivity(Intent(OfflineTopHeadlineActivity.getStartIntent(this@MainActivity)))
     }
 
 }

@@ -2,11 +2,16 @@ package com.nitinlondhe.newsapp.di.module
 
 import android.app.Application
 import android.content.Context
+import androidx.room.Room
 import com.nitinlondhe.newsapp.NewsApplication
 import com.nitinlondhe.newsapp.data.api.ApiKeyInterceptor
 import com.nitinlondhe.newsapp.data.api.NetworkService
+import com.nitinlondhe.newsapp.data.local.AppDatabaseService
+import com.nitinlondhe.newsapp.data.local.DatabaseService
+import com.nitinlondhe.newsapp.data.local.NewsAppDatabase
 import com.nitinlondhe.newsapp.di.ApplicationContext
 import com.nitinlondhe.newsapp.di.BaseUrl
+import com.nitinlondhe.newsapp.di.DatabaseName
 import com.nitinlondhe.newsapp.di.NetworkAPIKey
 import com.nitinlondhe.newsapp.utils.AppConstant
 import com.nitinlondhe.newsapp.utils.DefaultDispatcherProvider
@@ -90,5 +95,26 @@ class ApplicationModule(private val application: NewsApplication) {
     @Provides
     fun provideApiKey(): String = AppConstant.API_KEY
 
+    @Provides
+    @Singleton
+    fun provideDatabaseService(appDatabase: NewsAppDatabase): DatabaseService {
+        return AppDatabaseService(appDatabase)
+    }
 
+    @DatabaseName
+    @Provides
+    fun provideDatabaseName(): String = AppConstant.DATABASE_NAME
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(
+        @ApplicationContext context: Context,
+        @DatabaseName databaseName: String
+    ): NewsAppDatabase {
+        return Room.databaseBuilder(
+            context,
+            NewsAppDatabase::class.java,
+            databaseName
+        ).build()
+    }
 }

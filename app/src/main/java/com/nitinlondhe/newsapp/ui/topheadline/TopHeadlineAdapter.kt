@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.nitinlondhe.newsapp.data.model.topheadlines.Article
+import com.nitinlondhe.newsapp.data.local.entity.Article
 import com.nitinlondhe.newsapp.databinding.TopHeadlineItemLayoutBinding
 
 class TopHeadlineAdapter (private val articleList: ArrayList<Article>
