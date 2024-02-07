@@ -1,9 +1,12 @@
 package com.nitinlondhe.newsapp.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.nitinlondhe.newsapp.R
 import com.nitinlondhe.newsapp.databinding.ActivityMainBinding
+import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,4 +17,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+
+    fun startTopHeadlinesActivity(view: View) {
+        startActivity(Intent(TopHeadlineActivity.getStartIntent(this@MainActivity)))
+    }
+
 }
