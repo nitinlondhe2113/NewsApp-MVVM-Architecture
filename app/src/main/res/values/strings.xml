@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">NewsApp-MVVM-Architecture</string>
+
+    <string name="top_headlines">Top Headlines</string>
+    <string name="pagination_top_headlines">Pagination Top Headlines</string>
+    <string name="offline_top_headlines">Offline Top Headlines</string>
+    <string name="news_sources">News Sources</string>
+    <string name="coutries">Coutries</string>
+    <string name="language">Languages</string>
+    <string name="search">Search</string>
+    <string name="search_news">Search News</string>
+    <string name="error_title">Ooops,</string>
+    <string name="error_description">Something went wrong, Lets try\n come more again</string>
+    <string name="try_again">TRY AGAIN</string>
+    <string name="loading">Loading</string>
+    <string name="proceed">Proceed</string>
+    <string name="data_not_found">Data Not Found.</string>
+    <string name="language_info">Please select any two language.</string>
+
 </resources>

@@ -4,15 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnTopHeadlines"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="@string/top_headlines"
+        android:onClick="startTopHeadlinesActivity"
+        app:layout_constraintBottom_toTopOf="@+id/btnOfflineTopHeadlines"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnOfflineTopHeadlines"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/offline_top_headlines"
+        android:onClick="startOfflineTopHeadlinesActivity"
+        app:layout_constraintBottom_toTopOf="@+id/btnPaginationTopHeadlines"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTopHeadlines" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPaginationTopHeadlines"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pagination_top_headlines"
+        android:onClick="startPaginationTopHeadlinesActivity"
+        app:layout_constraintBottom_toTopOf="@+id/btnNewsSources"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnOfflineTopHeadlines" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNewsSources"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/news_sources"
+        android:onClick="startNewsSourcesActivity"
+        app:layout_constraintBottom_toTopOf="@+id/btnCoutriess"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPaginationTopHeadlines" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCoutriess"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/coutries"
+        android:onClick="startCountryListActivity"
+        app:layout_constraintBottom_toTopOf="@+id/btnLanguages"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNewsSources" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnLanguages"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/language"
+        android:onClick="startLanguageListActivity"
+        app:layout_constraintBottom_toTopOf="@+id/btnSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCoutriess" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSearch"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:onClick="startSearchActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLanguages" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
