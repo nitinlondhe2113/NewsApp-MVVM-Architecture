@@ -1,54 +1,50 @@
 package com.nitinlondhe.newsapp.ui
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.nitinlondhe.newsapp.databinding.ActivityMainBinding
-import com.nitinlondhe.newsapp.ui.country.CountryListActivity
-import com.nitinlondhe.newsapp.ui.language.LanguageListActivity
-import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineActivity
-import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineActivity
-import com.nitinlondhe.newsapp.ui.search.SearchActivity
-import com.nitinlondhe.newsapp.ui.sources.NewsSourcesActivity
-import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import com.nitinlondhe.newsapp.ui.base.NewsNavHost
+import com.nitinlondhe.newsapp.ui.theme.NewsAppTheme
+import com.nitinlondhe.newsapp.ui.theme.gray40
+import com.nitinlondhe.newsapp.utils.AppConstant
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
 
-    private lateinit var binding: ActivityMainBinding
 
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-    }
+        setContent {
+            NewsAppTheme {
+                Scaffold(topBar = {
+                    TopAppBar(colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        titleContentColor = Color.White
+                    ), title = { Text(text = AppConstant.APP_NAME) })
+                }) { padding ->
+                    Column(
+                        modifier = Modifier
+                            .padding(padding)
+                            .background(gray40),
+                    ) {
+                        NewsNavHost()
+                    }
+                }
 
-    fun startTopHeadlinesActivity(view: View) {
-        startActivity(Intent(TopHeadlineActivity.getStartIntent(this@MainActivity)))
+            }
+        }
     }
-
-    fun startOfflineTopHeadlinesActivity(view: View) {
-        startActivity(Intent(OfflineTopHeadlineActivity.getStartIntent(this@MainActivity)))
-    }
-
-    fun startPaginationTopHeadlinesActivity(view: View) {
-        startActivity(Intent(PaginationTopHeadlineActivity.getStartIntent(this@MainActivity)))
-    }
-
-    fun startNewsSourcesActivity(view: View) {
-        startActivity(Intent(NewsSourcesActivity.getStartIntent(this@MainActivity)))
-    }
-
-    fun startCountryListActivity(view: View) {
-        startActivity(Intent(CountryListActivity.getStartIntent(this@MainActivity)))
-    }
-
-    fun startLanguageListActivity(view: View) {
-        startActivity(Intent(LanguageListActivity.getStartIntent(this@MainActivity)))
-    }
-
-    fun startSearchActivity(view: View) {
-        startActivity(Intent(SearchActivity.getStartIntent(this@MainActivity)))
-    }
-
 }
