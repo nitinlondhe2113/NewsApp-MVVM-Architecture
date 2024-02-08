@@ -8,20 +8,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nitinlondhe.newsapp.NewsApplication
 import com.nitinlondhe.newsapp.data.model.topheadlines.ApiArticle
 import com.nitinlondhe.newsapp.databinding.ActivityPaginationTopHeadlineBinding
-import com.nitinlondhe.newsapp.di.component.DaggerActivityComponent
-import com.nitinlondhe.newsapp.di.module.ActivityModule
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class PaginationTopHeadlineActivity : AppCompatActivity() {
 
-    @Inject
     lateinit var paginationTopHeadlineViewModel: PaginationTopHeadlineViewModel
 
     @Inject
@@ -30,12 +29,16 @@ class PaginationTopHeadlineActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPaginationTopHeadlineBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityPaginationTopHeadlineBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupViewModel()
         setupUI()
         setupObserver()
+    }
+
+    private fun setupViewModel() {
+        paginationTopHeadlineViewModel = ViewModelProvider(this)[PaginationTopHeadlineViewModel::class.java]
     }
 
     private fun setupUI() {
@@ -63,12 +66,6 @@ class PaginationTopHeadlineActivity : AppCompatActivity() {
             }
         }
 
-    }
-
-    private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build(). inject(this)
     }
 
     companion object {

@@ -8,6 +8,7 @@ import com.nitinlondhe.newsapp.ui.base.UiState
 import com.nitinlondhe.newsapp.utils.DispatcherProvider
 import com.nitinlondhe.newsapp.utils.NetworkHelper
 import com.nitinlondhe.newsapp.utils.logger.Logger
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class NewsListViewModel @Inject constructor(
     private val newsRepository: NewsRepository,
     private val logger: Logger,

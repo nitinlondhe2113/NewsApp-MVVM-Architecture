@@ -6,6 +6,7 @@ import com.nitinlondhe.newsapp.data.model.Language
 import com.nitinlondhe.newsapp.data.repository.LanguageListRepository
 import com.nitinlondhe.newsapp.ui.base.UiState
 import com.nitinlondhe.newsapp.utils.DispatcherProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class LanguageListViewModel @Inject constructor(
     private val languageListRepository: LanguageListRepository,
     private val dispatcherProvider: DispatcherProvider,

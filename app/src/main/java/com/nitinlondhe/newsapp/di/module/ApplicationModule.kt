@@ -1,15 +1,12 @@
 package com.nitinlondhe.newsapp.di.module
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import com.nitinlondhe.newsapp.NewsApplication
 import com.nitinlondhe.newsapp.data.api.ApiKeyInterceptor
 import com.nitinlondhe.newsapp.data.api.NetworkService
 import com.nitinlondhe.newsapp.data.local.AppDatabaseService
 import com.nitinlondhe.newsapp.data.local.DatabaseService
 import com.nitinlondhe.newsapp.data.local.NewsAppDatabase
-import com.nitinlondhe.newsapp.di.ApplicationContext
 import com.nitinlondhe.newsapp.di.BaseUrl
 import com.nitinlondhe.newsapp.di.DatabaseName
 import com.nitinlondhe.newsapp.di.NetworkAPIKey
@@ -22,23 +19,17 @@ import com.nitinlondhe.newsapp.utils.logger.AppLogger
 import com.nitinlondhe.newsapp.utils.logger.Logger
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApplicationModule(private val application: NewsApplication) {
-
-    @ApplicationContext
-    @Provides
-    fun provideContext(): Context {
-        return application
-    }
-
-    @Provides
-    @Singleton
-    fun provideApplication(): Application = application
+@InstallIn(SingletonComponent::class)
+class ApplicationModule {
 
     @Provides
     @Singleton

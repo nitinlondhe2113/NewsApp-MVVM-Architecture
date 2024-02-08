@@ -8,23 +8,22 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nitinlondhe.newsapp.NewsApplication
 import com.nitinlondhe.newsapp.data.local.entity.Article
 import com.nitinlondhe.newsapp.databinding.ActivitySearchBinding
-import com.nitinlondhe.newsapp.di.component.DaggerActivityComponent
-import com.nitinlondhe.newsapp.di.module.ActivityModule
 import com.nitinlondhe.newsapp.ui.base.UiState
 import com.nitinlondhe.newsapp.ui.news.NewsListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
 
-    @Inject
     lateinit var searchViewModel: SearchViewModel
 
     @Inject
@@ -33,12 +32,16 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupViewModel()
         setupUI()
         setupObserver()
+    }
+
+    private fun setupViewModel() {
+        searchViewModel = ViewModelProvider(this)[SearchViewModel::class.java]
     }
 
     private fun setupUI() {
@@ -96,12 +99,6 @@ class SearchActivity : AppCompatActivity() {
     private fun renderList(articleList: List<Article>) {
         newsListAdapter.addArticles(articleList)
         newsListAdapter.notifyDataSetChanged()
-    }
-
-    private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().inject(this)
     }
 
     companion object {

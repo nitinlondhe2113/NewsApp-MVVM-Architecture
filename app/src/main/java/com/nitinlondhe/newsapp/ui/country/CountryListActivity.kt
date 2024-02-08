@@ -7,23 +7,22 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.nitinlondhe.newsapp.NewsApplication
 import com.nitinlondhe.newsapp.data.model.Country
 import com.nitinlondhe.newsapp.databinding.ActivityCountryListBinding
-import com.nitinlondhe.newsapp.di.component.DaggerActivityComponent
-import com.nitinlondhe.newsapp.di.module.ActivityModule
 import com.nitinlondhe.newsapp.ui.base.UiState
 import com.nitinlondhe.newsapp.ui.news.NewsListActivity
 import com.nitinlondhe.newsapp.utils.AppConstant
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class CountryListActivity : AppCompatActivity() {
 
-    @Inject
     lateinit var countryListViewModel: CountryListViewModel
 
     @Inject
@@ -31,12 +30,16 @@ class CountryListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCountryListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityCountryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupViewModel()
         setupUI()
         setupObserver()
+    }
+
+    private fun setupViewModel() {
+        countryListViewModel = ViewModelProvider(this)[CountryListViewModel::class.java]
     }
 
     private fun setupUI() {
@@ -96,12 +99,6 @@ class CountryListActivity : AppCompatActivity() {
     private fun renderList(sourceList: List<Country>) {
         countryListAdapter.addCountry(sourceList)
         countryListAdapter.notifyDataSetChanged()
-    }
-
-    private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().inject(this)
     }
 
     companion object {

@@ -1,113 +1,19 @@
 package com.nitinlondhe.newsapp.di.module
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.nitinlondhe.newsapp.data.repository.CountryListRepository
-import com.nitinlondhe.newsapp.data.repository.LanguageListRepository
-import com.nitinlondhe.newsapp.data.repository.NewsRepository
-import com.nitinlondhe.newsapp.data.repository.PaginationTopHeadlineRepository
-import com.nitinlondhe.newsapp.data.repository.SearchRepository
-import com.nitinlondhe.newsapp.data.repository.TopHeadlineRepository
-import com.nitinlondhe.newsapp.di.ActivityContext
-import com.nitinlondhe.newsapp.ui.base.ViewModelProviderFactory
 import com.nitinlondhe.newsapp.ui.country.CountryListAdapter
-import com.nitinlondhe.newsapp.ui.country.CountryListViewModel
 import com.nitinlondhe.newsapp.ui.language.LanguageListAdapter
-import com.nitinlondhe.newsapp.ui.language.LanguageListViewModel
 import com.nitinlondhe.newsapp.ui.news.NewsListAdapter
-import com.nitinlondhe.newsapp.ui.news.NewsListViewModel
 import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineAdapter
-import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineViewModel
-import com.nitinlondhe.newsapp.ui.search.SearchViewModel
 import com.nitinlondhe.newsapp.ui.sources.NewsSourceAdapter
 import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineAdapter
-import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineViewModel
-import com.nitinlondhe.newsapp.utils.DispatcherProvider
-import com.nitinlondhe.newsapp.utils.NetworkHelper
-import com.nitinlondhe.newsapp.utils.logger.Logger
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 
 @Module
-class ActivityModule(private val activity: AppCompatActivity) {
-
-    @ActivityContext
-    @Provides
-    fun provideContext(): Context {
-        return activity
-    }
-
-    @Provides
-    fun provideTopHeadLinesViewModel(
-        topHeadlineRepository: TopHeadlineRepository,
-        networkHelper: NetworkHelper,
-        dispatcherProvider: DispatcherProvider,
-        logger: Logger
-    ): TopHeadlineViewModel {
-        return ViewModelProvider(activity, ViewModelProviderFactory(TopHeadlineViewModel::class) {
-            TopHeadlineViewModel(
-                topHeadlineRepository,dispatcherProvider, networkHelper, logger
-            )
-        })[TopHeadlineViewModel::class.java]
-    }
-
-    @Provides
-    fun providePaginationTopHeadLinesViewModel(
-        paginationTopHeadlineRepository: PaginationTopHeadlineRepository,
-        dispatcherProvider: DispatcherProvider
-    ): PaginationTopHeadlineViewModel {
-        return ViewModelProvider(activity,
-            ViewModelProviderFactory(PaginationTopHeadlineViewModel::class) {
-                PaginationTopHeadlineViewModel(
-                    paginationTopHeadlineRepository, dispatcherProvider
-                )
-            })[PaginationTopHeadlineViewModel::class.java]
-    }
-
-    @Provides
-    fun provideNewsViewModel(
-        newsRepository: NewsRepository,
-        logger: Logger,
-        networkHelper: NetworkHelper,
-        dispatcherProvider: DispatcherProvider
-    ): NewsListViewModel {
-        return ViewModelProvider(activity, ViewModelProviderFactory(NewsListViewModel::class) {
-            NewsListViewModel(newsRepository, logger, dispatcherProvider, networkHelper)
-        })[NewsListViewModel::class.java]
-    }
-
-    @Provides
-    fun provideCountryListViewModel(
-        countryListRepository: CountryListRepository,
-        dispatcherProvider: DispatcherProvider
-    ): CountryListViewModel {
-        return ViewModelProvider(activity, ViewModelProviderFactory(CountryListViewModel::class) {
-            CountryListViewModel(countryListRepository, dispatcherProvider)
-        })[CountryListViewModel::class.java]
-    }
-
-    @Provides
-    fun provideLanguageListViewModel(
-        languageListRepository: LanguageListRepository,
-        dispatcherProvider: DispatcherProvider
-    ): LanguageListViewModel {
-        return ViewModelProvider(activity, ViewModelProviderFactory(LanguageListViewModel::class) {
-            LanguageListViewModel(languageListRepository, dispatcherProvider)
-        })[LanguageListViewModel::class.java]
-    }
-
-    @Provides
-    fun provideSearchViewModel(
-        searchRepository: SearchRepository,
-        dispatcherProvider: DispatcherProvider,
-        networkHelper: NetworkHelper,
-    ): SearchViewModel {
-        return ViewModelProvider(activity, ViewModelProviderFactory(SearchViewModel::class) {
-            SearchViewModel(searchRepository, dispatcherProvider, networkHelper)
-        })[SearchViewModel::class.java]
-    }
-
+@InstallIn(ActivityComponent::class)
+class ActivityModule {
 
     @Provides
     fun provideTopHeadlineAdapter() = TopHeadlineAdapter(ArrayList())
