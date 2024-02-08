@@ -26,9 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.offline.OfflineTopHeadlineActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.pagination.PaginationTopHeadlineActivity"
             android:exported="false">
             <meta-data

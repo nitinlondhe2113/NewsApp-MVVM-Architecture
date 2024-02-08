@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.nitinlondhe.newsapp.home.HomeScreenRoute
+import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineRoute
 import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineRoute
 
 sealed class Route(val name: String) {
@@ -41,6 +42,11 @@ fun NewsNavHost() {
         }
         composable(route = Route.TopHeadline.name) {
             TopHeadlineRoute(onNewsClick = {
+                openCustomChromeTab(context, it)
+            })
+        }
+        composable(route = Route.OfflineTopHeadline.name) {
+            OfflineTopHeadlineRoute(onNewsClick = {
                 openCustomChromeTab(context, it)
             })
         }
