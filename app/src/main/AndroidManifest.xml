@@ -26,13 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.pagination.PaginationTopHeadlineActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ui.sources.NewsSourcesActivity"
             android:exported="false" />
         <activity
