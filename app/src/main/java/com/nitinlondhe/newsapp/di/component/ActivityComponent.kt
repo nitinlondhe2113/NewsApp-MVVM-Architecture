@@ -6,6 +6,7 @@ import com.nitinlondhe.newsapp.data.repository.NewsRepository
 import com.nitinlondhe.newsapp.data.repository.NewsSourceRepository
 import com.nitinlondhe.newsapp.data.repository.OfflineTopHeadlineRepository
 import com.nitinlondhe.newsapp.data.repository.PaginationTopHeadlineRepository
+import com.nitinlondhe.newsapp.data.repository.SearchRepository
 import com.nitinlondhe.newsapp.data.repository.TopHeadlineRepository
 import com.nitinlondhe.newsapp.di.ActivityScope
 import com.nitinlondhe.newsapp.di.module.ActivityModule
@@ -14,6 +15,7 @@ import com.nitinlondhe.newsapp.ui.language.LanguageListActivity
 import com.nitinlondhe.newsapp.ui.news.NewsListActivity
 import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineActivity
+import com.nitinlondhe.newsapp.ui.search.SearchActivity
 import com.nitinlondhe.newsapp.ui.sources.NewsSourcesActivity
 import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineActivity
 import dagger.Component
@@ -36,6 +38,8 @@ interface ActivityComponent {
 
     fun inject(activity: LanguageListActivity)
 
+    fun inject(activity: SearchActivity)
+
 
     fun getTopHeadlineRepository(): TopHeadlineRepository
 
@@ -50,5 +54,7 @@ interface ActivityComponent {
     fun getCountryListRepository(): CountryListRepository
 
     fun getLanguageListRepository(): LanguageListRepository
+
+    fun getSearchRepository(): SearchRepository
 
 }
