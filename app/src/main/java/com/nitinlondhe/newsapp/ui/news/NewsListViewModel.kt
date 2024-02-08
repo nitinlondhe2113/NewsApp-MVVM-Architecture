@@ -61,4 +61,41 @@ class NewsListViewModel @Inject constructor(
                 }
         }
     }
+
+    fun fetchNewsByCountry(countryId: String) {
+        if (checkInternetConnection()) fetchNewsByCountryByNetwork(countryId)
+        else fetchNewsByCountryByDB(countryId)
+    }
+
+    private fun fetchNewsByCountryByNetwork(countryId: String) {
+        viewModelScope.launch(dispatcherProvider.main) {
+            newsRepository.getNewsByCountry(countryId)
+                .flowOn(dispatcherProvider.io)
+                .catch { e ->
+                    _newsUiState.value = UiState.Error(e.toString())
+                }.collect {
+                    if(!checkInternetConnection() && it.isEmpty()) {
+                        _newsUiState.value = UiState.Error("Data Not found.")
+                    } else {
+                        _newsUiState.value = UiState.Success(it)
+                    }
+                }
+        }
+    }
+
+    private fun fetchNewsByCountryByDB(countryId: String) {
+        viewModelScope.launch(dispatcherProvider.main) {
+            newsRepository.getNewsByCountryByDB(countryId)
+                .flowOn(dispatcherProvider.io)
+                .catch { e ->
+                    _newsUiState.value = UiState.Error(e.toString())
+                }.collect {
+                    if(!checkInternetConnection() && it.isEmpty()) {
+                        _newsUiState.value = UiState.Error("Data Not found.")
+                    } else {
+                        _newsUiState.value = UiState.Success(it)
+                    }
+                }
+        }
+    }
 }

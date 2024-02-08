@@ -1,4 +1,4 @@
-package com.nitinlondhe.newsapp.ui.news
+package com.nitinlondhe.newsapp.ui.country
 
 import android.content.Context
 import android.content.Intent
@@ -11,29 +11,29 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nitinlondhe.newsapp.NewsApplication
-import com.nitinlondhe.newsapp.data.local.entity.Article
-import com.nitinlondhe.newsapp.databinding.ActivityNewsListBinding
+import com.nitinlondhe.newsapp.data.model.Country
+import com.nitinlondhe.newsapp.databinding.ActivityCountryListBinding
 import com.nitinlondhe.newsapp.di.component.DaggerActivityComponent
 import com.nitinlondhe.newsapp.di.module.ActivityModule
 import com.nitinlondhe.newsapp.ui.base.UiState
+import com.nitinlondhe.newsapp.ui.news.NewsListActivity
 import com.nitinlondhe.newsapp.utils.AppConstant
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NewsListActivity : AppCompatActivity() {
+class CountryListActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var newsListViewModel: NewsListViewModel
+    lateinit var countryListViewModel: CountryListViewModel
 
     @Inject
-    lateinit var newsListAdapter: NewsListAdapter
+    lateinit var countryListAdapter: CountryListAdapter
 
-    private lateinit var binding: ActivityNewsListBinding
-
+    private lateinit var binding: ActivityCountryListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()
         super.onCreate(savedInstanceState)
-        binding = ActivityNewsListBinding.inflate(layoutInflater)
+        binding = ActivityCountryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupUI()
         setupObserver()
@@ -42,49 +42,35 @@ class NewsListActivity : AppCompatActivity() {
     private fun setupUI() {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = newsListAdapter
+            adapter = countryListAdapter
         }
 
         binding.includeLayout.tryAgainBtn.setOnClickListener {
-            getIntentData()
+            countryListViewModel.fetchCountry()
         }
 
-        getIntentData()
-    }
-
-    private fun getIntentData() {
-        intent.extras?.apply {
-            val newsType = getString(EXTRA_NEWS_TYPE)
-            newsType?.let { type ->
-                when (type) {
-                    AppConstant.NEWS_BY_SOURCES -> {
-                        val source = getString(EXTRA_NEWS_SOURCE)
-                        source?.let {
-                            newsListViewModel.fetchNewsBySources(it)
-                        }
-                    }
-                    AppConstant.NEWS_BY_COUNTRY -> {
-                        val countryId = getString(EXTRA_COUNTRY_ID)
-                        countryId?.let {
-                            newsListViewModel.fetchNewsByCountry(it)
-                        }
-                    }
-                }
-            }
+        countryListAdapter.itemClickListener = { _, countryList ->
+            val country = countryList as Country
+            startActivity(
+                NewsListActivity.getStartIntent(
+                    context = this@CountryListActivity,
+                    countryID = country.id,
+                    newsType = AppConstant.NEWS_BY_COUNTRY
+                )
+            )
         }
     }
 
     private fun setupObserver() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                newsListViewModel.newUiState.collect {
+                countryListViewModel.countryUiState.collect {
                     when (it) {
                         is UiState.Success -> {
                             binding.progressBar.visibility = View.GONE
                             renderList(it.data)
                             binding.recyclerView.visibility = View.VISIBLE
                             binding.includeLayout.errorLayout.visibility = View.GONE
-
                         }
 
                         is UiState.Loading -> {
@@ -96,21 +82,20 @@ class NewsListActivity : AppCompatActivity() {
                         }
 
                         is UiState.Error -> {
-                            binding.progressBar.visibility = View.GONE
+                            binding.progressBar.visibility = View.VISIBLE
                             binding.includeLayout.errorLayout.visibility = View.VISIBLE
-                            Toast.makeText(this@NewsListActivity, it.message, Toast.LENGTH_LONG)
+                            Toast.makeText(this@CountryListActivity, it.message, Toast.LENGTH_LONG)
                                 .show()
                         }
-
                     }
                 }
             }
         }
     }
 
-    private fun renderList(articleList: List<Article>) {
-        newsListAdapter.addArticles(articleList)
-        newsListAdapter.notifyDataSetChanged()
+    private fun renderList(sourceList: List<Country>) {
+        countryListAdapter.addCountry(sourceList)
+        countryListAdapter.notifyDataSetChanged()
     }
 
     private fun injectDependencies() {
@@ -120,22 +105,8 @@ class NewsListActivity : AppCompatActivity() {
     }
 
     companion object {
-
-        private const val EXTRA_NEWS_SOURCE = "EXTRA_NEWS_SOURCE"
-        private const val EXTRA_NEWS_TYPE = "EXTRA_NEWS_TYPE"
-        private const val EXTRA_COUNTRY_ID = "EXTRA_COUNTRY_ID"
-
-        fun getStartIntent(
-            context: Context,
-            newsSource: String? = "",
-            countryID: String? = "",
-            newsType: String
-        ): Intent {
-            return Intent(context, NewsListActivity::class.java).apply {
-                putExtra(EXTRA_NEWS_TYPE, newsType)
-                putExtra(EXTRA_NEWS_SOURCE, newsSource)
-                putExtra(EXTRA_COUNTRY_ID, countryID)
-            }
+        fun getStartIntent(context: Context): Intent {
+            return Intent(context, CountryListActivity::class.java)
         }
     }
 }
