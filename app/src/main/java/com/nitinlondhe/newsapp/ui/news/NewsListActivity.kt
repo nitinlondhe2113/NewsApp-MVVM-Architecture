@@ -69,6 +69,12 @@ class NewsListActivity : AppCompatActivity() {
                             newsListViewModel.fetchNewsByCountry(it)
                         }
                     }
+                    AppConstant.NEWS_BY_LANGUAGE -> {
+                        val languageId = getString(EXTRA_LANGUAGE_LIST)
+                        languageId?.let {
+                            newsListViewModel.fetchNewsByLanguage(it)
+                        }
+                    }
                 }
             }
         }
@@ -124,17 +130,20 @@ class NewsListActivity : AppCompatActivity() {
         private const val EXTRA_NEWS_SOURCE = "EXTRA_NEWS_SOURCE"
         private const val EXTRA_NEWS_TYPE = "EXTRA_NEWS_TYPE"
         private const val EXTRA_COUNTRY_ID = "EXTRA_COUNTRY_ID"
+        private const val EXTRA_LANGUAGE_LIST = "EXTRA_LANGUAGE_LIST"
 
         fun getStartIntent(
             context: Context,
             newsSource: String? = "",
             countryID: String? = "",
-            newsType: String
+            newsType: String,
+            langList: String? = "",
         ): Intent {
             return Intent(context, NewsListActivity::class.java).apply {
                 putExtra(EXTRA_NEWS_TYPE, newsType)
                 putExtra(EXTRA_NEWS_SOURCE, newsSource)
                 putExtra(EXTRA_COUNTRY_ID, countryID)
+                putExtra(EXTRA_LANGUAGE_LIST, langList)
             }
         }
     }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.nitinlondhe.newsapp.databinding.ActivityMainBinding
 import com.nitinlondhe.newsapp.ui.country.CountryListActivity
+import com.nitinlondhe.newsapp.ui.language.LanguageListActivity
 import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineActivity
 import com.nitinlondhe.newsapp.ui.sources.NewsSourcesActivity
@@ -39,6 +40,10 @@ class MainActivity : AppCompatActivity() {
 
     fun startCountryListActivity(view: View) {
         startActivity(Intent(CountryListActivity.getStartIntent(this@MainActivity)))
+    }
+
+    fun startLanguageListActivity(view: View) {
+        startActivity(Intent(LanguageListActivity.getStartIntent(this@MainActivity)))
     }
 
 }

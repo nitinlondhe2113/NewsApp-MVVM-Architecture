@@ -4,6 +4,7 @@ import com.nitinlondhe.newsapp.data.api.NetworkService
 import com.nitinlondhe.newsapp.data.local.DatabaseService
 import com.nitinlondhe.newsapp.data.local.entity.Article
 import com.nitinlondhe.newsapp.data.model.topheadlines.toArticleEntity
+import com.nitinlondhe.newsapp.data.model.topheadlines.toArticleLanguage
 import com.nitinlondhe.newsapp.di.ActivityScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -54,5 +55,22 @@ class NewsRepository @Inject constructor(
         return databaseService.getAllTopHeadlinesArticles(countryId)
     }
 
+    fun getNewsByLanguage(languageId: String): Flow<List<Article>> {
+        return flow { emit(networkService.getNewsByLanguage(languageId)) }
+            .map {
+                it.apiArticles.map { apiArticle -> apiArticle.toArticleLanguage(languageId) }
+            }.flatMapConcat { articles ->
+                flow {
+                    emit(
+                        databaseService.deleteAllAndInsertAllLanguageArticles(articles, languageId)
+                    )
+                }
+            }.flatMapConcat {
+                databaseService.getLanguageNews(languageId)
+            }
+    }
 
+    fun getNewsByLanguageByDB(languageId: String): Flow<List<Article>> {
+        return databaseService.getLanguageNews(languageId)
+    }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.nitinlondhe.newsapp.data.repository.CountryListRepository
+import com.nitinlondhe.newsapp.data.repository.LanguageListRepository
 import com.nitinlondhe.newsapp.data.repository.NewsRepository
 import com.nitinlondhe.newsapp.data.repository.PaginationTopHeadlineRepository
 import com.nitinlondhe.newsapp.data.repository.TopHeadlineRepository
@@ -11,6 +12,8 @@ import com.nitinlondhe.newsapp.di.ActivityContext
 import com.nitinlondhe.newsapp.ui.base.ViewModelProviderFactory
 import com.nitinlondhe.newsapp.ui.country.CountryListAdapter
 import com.nitinlondhe.newsapp.ui.country.CountryListViewModel
+import com.nitinlondhe.newsapp.ui.language.LanguageListAdapter
+import com.nitinlondhe.newsapp.ui.language.LanguageListViewModel
 import com.nitinlondhe.newsapp.ui.news.NewsListAdapter
 import com.nitinlondhe.newsapp.ui.news.NewsListViewModel
 import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineAdapter
@@ -82,6 +85,16 @@ class ActivityModule(private val activity: AppCompatActivity) {
         })[CountryListViewModel::class.java]
     }
 
+    @Provides
+    fun provideLanguageListViewModel(
+        languageListRepository: LanguageListRepository,
+        dispatcherProvider: DispatcherProvider
+    ): LanguageListViewModel {
+        return ViewModelProvider(activity, ViewModelProviderFactory(LanguageListViewModel::class) {
+            LanguageListViewModel(languageListRepository, dispatcherProvider)
+        })[LanguageListViewModel::class.java]
+    }
+
 
     @Provides
     fun provideTopHeadlineAdapter() = TopHeadlineAdapter(ArrayList())
@@ -97,4 +110,7 @@ class ActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
     fun provideCountryListAdapter() = CountryListAdapter(ArrayList())
+
+    @Provides
+    fun provideLanguageListAdapter() = LanguageListAdapter(ArrayList())
 }

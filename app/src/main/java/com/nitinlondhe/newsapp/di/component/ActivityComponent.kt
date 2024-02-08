@@ -1,6 +1,7 @@
 package com.nitinlondhe.newsapp.di.component
 
 import com.nitinlondhe.newsapp.data.repository.CountryListRepository
+import com.nitinlondhe.newsapp.data.repository.LanguageListRepository
 import com.nitinlondhe.newsapp.data.repository.NewsRepository
 import com.nitinlondhe.newsapp.data.repository.NewsSourceRepository
 import com.nitinlondhe.newsapp.data.repository.OfflineTopHeadlineRepository
@@ -9,6 +10,7 @@ import com.nitinlondhe.newsapp.data.repository.TopHeadlineRepository
 import com.nitinlondhe.newsapp.di.ActivityScope
 import com.nitinlondhe.newsapp.di.module.ActivityModule
 import com.nitinlondhe.newsapp.ui.country.CountryListActivity
+import com.nitinlondhe.newsapp.ui.language.LanguageListActivity
 import com.nitinlondhe.newsapp.ui.news.NewsListActivity
 import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineActivity
@@ -32,6 +34,8 @@ interface ActivityComponent {
 
     fun inject(activity: CountryListActivity)
 
+    fun inject(activity: LanguageListActivity)
+
 
     fun getTopHeadlineRepository(): TopHeadlineRepository
 
@@ -44,5 +48,7 @@ interface ActivityComponent {
     fun getNewsRepository(): NewsRepository
 
     fun getCountryListRepository(): CountryListRepository
+
+    fun getLanguageListRepository(): LanguageListRepository
 
 }

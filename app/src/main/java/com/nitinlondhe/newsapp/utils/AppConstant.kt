@@ -1,6 +1,7 @@
 package com.nitinlondhe.newsapp.utils
 
 import com.nitinlondhe.newsapp.data.model.Country
+import com.nitinlondhe.newsapp.data.model.Language
 
 object AppConstant {
 
@@ -70,5 +71,20 @@ object AppConstant {
         Country("us", "United States of America"),
         Country("ve", "Venezuela"),
         Country("za", "South Africa")
+    )
+
+    val LANGUAGES = listOf(
+        Language("ar", "Arabic"),
+        Language("de", "German"),
+        Language("en", "English"),
+        Language("fr", "French"),
+        Language("he", "Hebrew"),
+        Language("it", "Italian"),
+        Language("nl", "Dutch"),
+        Language("no", "Norwegian"),
+        Language("pt", "Portuguese"),
+        Language("ru", "Russian"),
+        Language("sv", "Swedish"),
+        Language("zh", "Chinese")
     )
 }
