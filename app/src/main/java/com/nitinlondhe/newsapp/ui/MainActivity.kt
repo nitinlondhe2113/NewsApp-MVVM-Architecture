@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.nitinlondhe.newsapp.R
 import com.nitinlondhe.newsapp.databinding.ActivityMainBinding
 import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineActivity
+import com.nitinlondhe.newsapp.ui.sources.NewsSourcesActivity
 import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
 
     fun startPaginationTopHeadlinesActivity(view: View) {
         startActivity(Intent(PaginationTopHeadlineActivity.getStartIntent(this@MainActivity)))
+    }
+
+    fun startNewsSourcesActivity(view: View) {
+        startActivity(Intent(NewsSourcesActivity.getStartIntent(this@MainActivity)))
     }
 
 }

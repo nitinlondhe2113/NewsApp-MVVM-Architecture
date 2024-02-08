@@ -10,5 +10,8 @@ object AppConstant {
     const val PAGE_SIZE = 10
     const val DEBOUNCE_TIMEOUT = 300L
     const val MIN_SEARCH_CHAR = 3
+    const val NEWS_BY_SOURCES = "sources"
+    const val NEWS_BY_COUNTRY = "country"
+    const val NEWS_BY_LANGUAGE = "language"
 
 }
