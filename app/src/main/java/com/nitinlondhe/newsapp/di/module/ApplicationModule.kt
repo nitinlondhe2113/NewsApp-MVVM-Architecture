@@ -2,6 +2,7 @@ package com.nitinlondhe.newsapp.di.module
 
 import android.content.Context
 import androidx.room.Room
+import androidx.work.WorkManager
 import com.nitinlondhe.newsapp.data.api.ApiKeyInterceptor
 import com.nitinlondhe.newsapp.data.api.NetworkService
 import com.nitinlondhe.newsapp.data.local.AppDatabaseService
@@ -107,5 +108,13 @@ class ApplicationModule {
             NewsAppDatabase::class.java,
             databaseName
         ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideWorkManager(
+        @ApplicationContext context: Context
+    ): WorkManager {
+        return WorkManager.getInstance(context)
     }
 }

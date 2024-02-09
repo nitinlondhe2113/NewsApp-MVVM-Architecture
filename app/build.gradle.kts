@@ -93,6 +93,11 @@ dependencies {
     //Paging
     implementation ("androidx.paging:paging-compose:3.2.1")
 
+    //WorkManager
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+    implementation("androidx.hilt:hilt-work:1.1.0")
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
+
     //Local unit test
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.mockito:mockito-core:5.3.1")
