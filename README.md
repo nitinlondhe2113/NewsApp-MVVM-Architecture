@@ -174,95 +174,98 @@ debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
 ## The Complete Project Folder Structure
 
-├── NewsApplication.kt
-├── data
-│   ├── api
-│   │   ├── ApiKeyInterceptor.kt
-│   │   └── NetworkService.kt
-│   ├── local
-│   │   ├── AppDatabaseService.kt
-│   │   ├── DatabaseService.kt
-│   │   ├── NewsAppDatabase.kt
-│   │   ├── dao
-│   │   │   ├── SourceDao.kt
-│   │   │   └── TopHeadlinesDao.kt
-│   │   └── entity
-│   │       ├── Article.kt
-│   │       ├── NewsSources.kt
-│   │       └── Source.kt
-│   ├── model
-│   │   ├── Country.kt
-│   │   ├── Language.kt
-│   │   ├── newssources
-│   │   │   ├── APINewsSource.kt
-│   │   │   └── NewsSourcesResponse.kt
-│   │   └── topheadlines
-│   │       ├── ApiArticle.kt
-│   │       ├── ApiSource.kt
-│   │       └── TopHeadlinesResponse.kt
-│   └── repository
-│       ├── CountryListRepository.kt
-│       ├── LanguageListRepository.kt
-│       ├── NewsRepository.kt
-│       ├── NewsSourceRepository.kt
-│       ├── OfflineTopHeadlineRepository.kt
-│       ├── PaginationTopHeadlineRepository.kt
-│       ├── SearchRepository.kt
-│       ├── TopHeadlinePagingSource.kt
-│       └── TopHeadlineRepository.kt
-├── di
-│   ├── module
-│   │   └── ApplicationModule.kt
-│   └── qualifier.kt
-├── ui
-│   ├── MainActivity.kt
-│   ├── base
-│   │   ├── CommonUI.kt
-│   │   ├── Navigation.kt
-│   │   └── UiState.kt
-│   ├── country
-│   │   ├── CountryListScreen.kt
-│   │   └── CountryListViewModel.kt
-│   ├── home
-│   │   └── HomeScreen.kt
-│   ├── language
-│   │   ├── LanguageListScreen.kt
-│   │   └── LanguageListViewModel.kt
-│   ├── news
-│   │   ├── NewsListScreen.kt
-│   │   └── NewsListViewModel.kt
-│   ├── offline
-│   │   ├── OffineTopHeadlineScreen.kt
-│   │   └── OfflineTopHeadlineViewModel.kt
-│   ├── pagination
-│   │   ├── PaginationTopHeadlineScreen.kt
-│   │   └── PaginationTopHeadlineViewModel.kt
-│   ├── search
-│   │   ├── SearchScreen.kt
-│   │   └── SearchViewModel.kt
-│   ├── sources
-│   │   ├── NewsSourcesScreen.kt
-│   │   └── NewsSourcesViewModel.kt
-│   ├── theme
-│   │   ├── Color.kt
-│   │   ├── Shape.kt
-│   │   ├── Theme.kt
-│   │   └── Type.kt
-│   └── topheadline
-│       ├── TopHeadlineScreen.kt
-│       └── TopHeadlineViewModel.kt
-├── utils
-│   ├── AppConstant.kt
-│   ├── DispatcherProvider.kt
-│   ├── NetworkHelper.kt
-│   ├── NetworkHelperImpl.kt
-│   ├── TimeUtil.kt
-│   ├── logger
-│   │   ├── AppLogger.kt
-│   │   └── Logger.kt
-│   └── typealias.kt
-└── worker
-    └── FetchTopHeadlinesWorker.kt
+└── com
+    └── nitinlondhe
+        └── newsapp
+            ├── NewsApplication.kt
+            ├── data
+            │   ├── api
+            │   │   ├── ApiKeyInterceptor.kt
+            │   │   └── NetworkService.kt
+            │   ├── local
+            │   │   ├── AppDatabaseService.kt
+            │   │   ├── DatabaseService.kt
+            │   │   ├── NewsAppDatabase.kt
+            │   │   ├── dao
+            │   │   │   ├── SourceDao.kt
+            │   │   │   └── TopHeadlinesDao.kt
+            │   │   └── entity
+            │   │       ├── Article.kt
+            │   │       ├── NewsSources.kt
+            │   │       └── Source.kt
+            │   ├── model
+            │   │   ├── Country.kt
+            │   │   ├── Language.kt
+            │   │   ├── newssources
+            │   │   │   ├── APINewsSource.kt
+            │   │   │   └── NewsSourcesResponse.kt
+            │   │   └── topheadlines
+            │   │       ├── ApiArticle.kt
+            │   │       ├── ApiSource.kt
+            │   │       └── TopHeadlinesResponse.kt
+            │   └── repository
+            │       ├── CountryListRepository.kt
+            │       ├── LanguageListRepository.kt
+            │       ├── NewsRepository.kt
+            │       ├── NewsSourceRepository.kt
+            │       ├── OfflineTopHeadlineRepository.kt
+            │       ├── PaginationTopHeadlineRepository.kt
+            │       ├── SearchRepository.kt
+            │       ├── TopHeadlinePagingSource.kt
+            │       └── TopHeadlineRepository.kt
+            ├── di
+            │   ├── module
+            │   │   └── ApplicationModule.kt
+            │   └── qualifier.kt
+            ├── ui
+            │   ├── MainActivity.kt
+            │   ├── base
+            │   │   ├── CommonUI.kt
+            │   │   ├── Navigation.kt
+            │   │   └── UiState.kt
+            │   ├── country
+            │   │   ├── CountryListScreen.kt
+            │   │   └── CountryListViewModel.kt
+            │   ├── home
+            │   │   └── HomeScreenRoute.kt
+            │   ├── language
+            │   │   ├── LanguageListScreen.kt
+            │   │   └── LanguageListViewModel.kt
+            │   ├── news
+            │   │   ├── NewsListScreen.kt
+            │   │   └── NewsListViewModel.kt
+            │   ├── offline
+            │   │   ├── OffineTopHeadlineScreen.kt
+            │   │   └── OfflineTopHeadlineViewModel.kt
+            │   ├── pagination
+            │   │   ├── PaginationTopHeadlineScreen.kt
+            │   │   └── PaginationTopHeadlineViewModel.kt
+            │   ├── search
+            │   │   ├── SearchScreen.kt
+            │   │   └── SearchViewModel.kt
+            │   ├── sources
+            │   │   ├── NewsSourcesScreen.kt
+            │   │   └── NewsSourcesViewModel.kt
+            │   ├── theme
+            │   │   ├── Color.kt
+            │   │   ├── Shape.kt
+            │   │   ├── Theme.kt
+            │   │   └── Type.kt
+            │   └── topheadline
+            │       ├── TopHeadlineScreen.kt
+            │       └── TopHeadlineViewModel.kt
+            ├── utils
+            │   ├── AppConstant.kt
+            │   ├── DispatcherProvider.kt
+            │   ├── NetworkHelper.kt
+            │   ├── NetworkHelperImpl.kt
+            │   ├── TimeUtil.kt
+            │   ├── logger
+            │   │   ├── AppLogger.kt
+            │   │   └── Logger.kt
+            │   └── typealias.kt
+            └── worker
+                └── FetchTopHeadlinesWorker.kt
 ```
 
 <p align="center">
