@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.nitinlondhe.newsapp.ui.country.CountryListRoute
 import com.nitinlondhe.newsapp.ui.home.HomeScreenRoute
+import com.nitinlondhe.newsapp.ui.language.LanguageListRoute
 import com.nitinlondhe.newsapp.ui.news.NewsListRoute
 import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineRoute
 import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineRoute
@@ -81,6 +82,11 @@ fun NewsNavHost() {
         composable(route = Route.CountryList.name) {
             CountryListRoute(onCountryClick = {
                 navController.navigate(route = Route.NewsList.passData(countryId = it))
+            })
+        }
+        composable(route = Route.LanguageList.name) {
+            LanguageListRoute(onLanguageClick = {
+                navController.navigate(route = Route.NewsList.passData(languageId = it))
             })
         }
 
