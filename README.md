@@ -174,6 +174,7 @@ debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
 ## The Complete Project Folder Structure
 
+```
 └── com
     └── nitinlondhe
         └── newsapp
