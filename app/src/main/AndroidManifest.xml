@@ -25,15 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.news.NewsListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.language.LanguageListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.search.SearchActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

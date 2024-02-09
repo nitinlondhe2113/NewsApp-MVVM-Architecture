@@ -16,6 +16,7 @@ import com.nitinlondhe.newsapp.ui.language.LanguageListRoute
 import com.nitinlondhe.newsapp.ui.news.NewsListRoute
 import com.nitinlondhe.newsapp.ui.offline.OfflineTopHeadlineRoute
 import com.nitinlondhe.newsapp.ui.pagination.PaginationTopHeadlineRoute
+import com.nitinlondhe.newsapp.ui.search.SearchScreenRoute
 import com.nitinlondhe.newsapp.ui.sources.NewsSourcesRoute
 import com.nitinlondhe.newsapp.ui.topheadline.TopHeadlineRoute
 import com.nitinlondhe.newsapp.utils.AppConstant
@@ -89,7 +90,11 @@ fun NewsNavHost() {
                 navController.navigate(route = Route.NewsList.passData(languageId = it))
             })
         }
-
+        composable(route = Route.Search.name) {
+            SearchScreenRoute(onNewsClick = {
+                openCustomChromeTab(context, it)
+            })
+        }
         composable(route = Route.NewsList.name,
             arguments = listOf(
                 navArgument(AppConstant.SOURCE_ID) {
