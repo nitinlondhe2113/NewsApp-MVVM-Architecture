@@ -17,6 +17,9 @@ object AppConstant {
     const val NEWS_BY_SOURCES = "sources"
     const val NEWS_BY_COUNTRY = "country"
     const val NEWS_BY_LANGUAGE = "language"
+    const val SOURCE_ID = "sourceId"
+    const val COUNTRY_ID = "countryId"
+    const val LANGUAGE_ID = "languageId"
 
     val COUNTRIES = listOf(
         Country("ae", "United Arab Emirates"),

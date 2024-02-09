@@ -1,4 +1,4 @@
-package com.nitinlondhe.newsapp.home
+package com.nitinlondhe.newsapp.ui.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
