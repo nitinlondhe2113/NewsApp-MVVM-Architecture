@@ -270,15 +270,8 @@ debugImplementation 'androidx.compose.ui:ui-test-manifest'
 ```
 
 <p align="center">
-<img alt="main_screen" src="https://github.com/nitinlondhe2113/NewsApp-MVVM-Architecture/assets/53563712/fc23366a-9897-4407-88ef-e3375a916ee5" width="360"  height="640"> 
-<img alt="search_screen" src="https://github.com/nitinlondhe2113/NewsApp-MVVM-Architecture/assets/53563712/1a40695d-ada0-4bd4-86b1-1c9da98b8567" width="360"  height="640">
+<img alt="main_screen" src="https://github.com/nitinlondhe2113/NewsApp-MVVM-Architecture/assets/53563712/a5b4ce47-ec7b-45af-91ac-10802eaaa4f5"> 
 </p>
-
-<p align="center">
-<img alt="main_screen" src="https://github.com/nitinlondhe2113/NewsApp-MVVM-Architecture/assets/53563712/818688cc-45b9-49fc-8fb6-68191bc380f6" width="360"  height="640"> 
-<img alt="search_screen" src="https://github.com/nitinlondhe2113/NewsApp-MVVM-Architecture/assets/53563712/ea8e37ab-4f0b-47dc-865f-91e7b81c552c" width="360"  height="640">
-</p>
-
 
 ## 🚀 About Me
 Hi there! My name is Nitin Londhe, I work as a Software Developer and like to expand my skill set in my spare time.
